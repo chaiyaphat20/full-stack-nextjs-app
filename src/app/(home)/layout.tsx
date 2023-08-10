@@ -1,8 +1,11 @@
 import "../globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Sarabun } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const srabun = Sarabun({
+  subsets: ["thai"],
+  weight: ["100", "200", "300", "400", "700"],
+});
 
 export const metadata: Metadata = {
   title: "Home Page",
@@ -16,12 +19,12 @@ export default function HomeLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <h1>Web Header</h1>
+      <body className={srabun.className}>
+        <h1 style={{fontWeight:'700'}}>Web Header</h1>
         <hr />
         {children}
         <hr />
-        <h1>Web Footer</h1>
+        <h1 style={{fontWeight:'300'}}>Web Footer</h1>
       </body>
     </html>
   );
