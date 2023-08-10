@@ -8,7 +8,8 @@ export default function AppHeader() {
   };
   return (
     <div>
-      <h1>AppHeader</h1>
+      <h1 className="header">AppHeader</h1>
+      <p style={{color:'red'}}>Hello React</p>
       <AppLogo />
       <button onClick={showMsg}>Click Me!</button>
     </div>
