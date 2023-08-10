@@ -1,6 +1,7 @@
 import Providers from "@/components/Providers";
 import "../globals.css";
 import type { Metadata } from "next";
+import { AppHeader } from "./ui/AppHeader";
 
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function HomeLayout({
     <html lang="en">
       <body >
         <Providers>
+        <AppHeader />
         {children}
         </Providers>
       </body>

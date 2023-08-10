@@ -1,13 +1,15 @@
 "use client";
 
 import { Button, Title } from "@mantine/core";
+import { AppHero } from "./AppHero";
+import { AppFeature } from "./AppFeature";
 
 export default function HomeContent() {
   return (
-    <div>
-      <Title order={3} color="green.3">Hello Page</Title>
-      <Button>ClickMe</Button>
-    </div>
+    <>
+      <AppHero />
+      <AppFeature title="บริการของเรา" description="รายละเอียดสินค้า"/>
+    </>
   );
 }
 
