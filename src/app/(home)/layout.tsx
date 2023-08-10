@@ -2,7 +2,7 @@ import Providers from "@/components/Providers";
 import "../globals.css";
 import type { Metadata } from "next";
 import { AppHeader } from "./ui/AppHeader";
-
+import { AppFooter } from "./ui/AppFooter";
 
 export const metadata: Metadata = {
   title: "Home Page",
@@ -16,10 +16,11 @@ export default function HomeLayout({
 }) {
   return (
     <html lang="en">
-      <body >
+      <body>
         <Providers>
-        <AppHeader />
-        {children}
+          <AppHeader />
+          {children}
+          <AppFooter />
         </Providers>
       </body>
     </html>
