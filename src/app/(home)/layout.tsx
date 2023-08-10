@@ -1,11 +1,7 @@
+import Providers from "@/components/Providers";
 import "../globals.css";
 import type { Metadata } from "next";
-import { Sarabun } from "next/font/google";
 
-const srabun = Sarabun({
-  subsets: ["thai"],
-  weight: ["100", "200", "300", "400", "700"],
-});
 
 export const metadata: Metadata = {
   title: "Home Page",
@@ -19,12 +15,10 @@ export default function HomeLayout({
 }) {
   return (
     <html lang="en">
-      <body className={srabun.className}>
-        <h1 style={{fontWeight:'700'}}>Web Header</h1>
-        <hr />
+      <body >
+        <Providers>
         {children}
-        <hr />
-        <h1 style={{fontWeight:'300'}}>Web Footer</h1>
+        </Providers>
       </body>
     </html>
   );
