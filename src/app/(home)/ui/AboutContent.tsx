@@ -1,17 +1,15 @@
 'use client'
 import { Container, Title, Text, Divider, Space } from "@mantine/core";
-export default function AboutContent() {
+export default function AboutContent({data}:any) {
   return (
     <Container size="lg" mt={40}>
       <Title order={3}>เกี่ยวกับเรา</Title>
       <Divider mt={2} />
+
+      <Text>Backend API Version {data.data.version} </Text>
+
       <Text fz="sm">
-        วิภัชภาคยิมคอนเซปต์เมเปิลเมคอัพ โปลิศคณาญาติอิมพีเรียลพันธกิจแพทเทิร์น
-        อัลไซเมอร์สโตร์ อุปัทวเหตุ แบดคีตปฏิภาณรายชื่อ
-        มายองเนสปัจเจกชนฮันนีมูนโบรกเกอร์เทวา ละตินบาบูนทับซ้อนแหวว พาสปอร์ตไบโอ
-        พรีเซ็นเตอร์ปิโตรเคมีแล็บวาทกรรม ดั๊มพ์นรีแพทย์โปรเจ็กเตอร์ ชินบัญชร
-        คอนเทนเนอร์รายชื่อพลาซ่าสามช่าสแตนดาร์ด รากหญ้ากฤษณ์แม่ค้าคาแรคเตอร์
-        พาสตา อันเดอร์รอยัลตี้ ตัวเองพงษ์โบตั๋นเทคโนแครต
+        {JSON.stringify(data)}
       </Text>
       <Space h="md" />
     </Container>

@@ -1,6 +1,8 @@
+import Providers from "@/components/Providers";
 import "../globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import DLayout from "./components/DLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,12 +18,10 @@ export default function DashboardLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <h1>Dashboard Header</h1>
-        <hr />
-        {children}
-        <hr />
-        <h1>Dashboard Footer</h1>
+      <body>
+        <Providers>
+          <DLayout>{children}</DLayout>
+        </Providers>
       </body>
     </html>
   );
