@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:8
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql-db-store:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=art123
+      - MYSQL_PASSWORD=Art123+AAAAA
+      - MYSQL_USER=admin123
+      - MYSQL_DATABASE=db
