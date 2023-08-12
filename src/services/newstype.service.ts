@@ -13,8 +13,8 @@ export async function findOneNewsType(id: number): Promise<NewsType | null> {
 
 export async function createNewsType(
   data: Prisma.NewsTypeCreateInput
-): Promise<void> {
-  await prisma.newsType.create({ data: { title: data.title } });
+): Promise<NewsType> {
+  return await prisma.newsType.create({ data: { title: data.title } });
 }
 
 export async function updateNewsType(

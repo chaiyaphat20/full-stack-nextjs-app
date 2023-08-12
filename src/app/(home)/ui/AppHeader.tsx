@@ -71,7 +71,7 @@ const useStyles = createStyles((theme) => ({
     color: theme.colorScheme === "dark" ? theme.white : theme.black,
     fontWeight: 500,
     fontSize: theme.fontSizes.sm,
-    backgroundColor:theme.colors.gray[6],
+    backgroundColor: theme.colors.gray[6],
 
     [theme.fn.smallerThan("sm")]: {
       height: rem(42),
@@ -204,15 +204,25 @@ export function AppHeader() {
               <Link
                 href="./"
                 className={pathname == "/" ? classes.active : classes.link}
+                prefetch={false}
               >
                 Home
               </Link>
-              <Link href="./about"   className={pathname == "/about" ? classes.active : classes.link}>
+              <Link
+                href="./about"
+                className={pathname == "/about" ? classes.active : classes.link}
+                prefetch={false}
+              >
                 About Us
               </Link>
-              <a href="#" className={classes.link}>
-                Academy
-              </a>
+              <Link
+                href="./newstype"
+                className={classes.link}
+                onClick={toggleDrawer}
+                prefetch={false}
+              >
+                ประเภทข่าว
+              </Link>
             </Group>
 
             <Group className={classes.hiddenMobile}>
@@ -243,15 +253,25 @@ export function AppHeader() {
               color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
             />
 
-            <Link href="./" className={classes.link} onClick={toggleDrawer}>
+            <Link href="./" className={classes.link} onClick={toggleDrawer}  prefetch={false}>
               Home
             </Link>
-            <Link href="./about" className={classes.link} onClick={toggleDrawer}>
+            <Link
+              href="./about"
+              className={classes.link}
+              onClick={toggleDrawer}
+              prefetch={false}  //ทุกครั้งที่เปลี่ยน route จะ call api ใหม่
+            >
               About Us
             </Link>
-            <a href="#" className={classes.link}>
-              Academy
-            </a>
+            <Link
+              href="./newstype"
+              className={classes.link}
+              onClick={toggleDrawer}
+              prefetch={false}
+            >
+              ประเภทข่าว
+            </Link>
 
             <Divider
               my="sm"

@@ -11,7 +11,7 @@ async function getData() {
   //   next: { revalidate: 10 }, // ดึงข้อมูลมาใหม่ทุก 10 Sec
   // });
 
-  const res = await fetch("https://api.codingthailand.com/api/version555", {  //ISR
+  const res = await fetch("https://api.codingthailand.com/api/version", {  //ISR
    cache:'no-store', // ข้อมูลจะอัพเดต เมื่อ refresh  //SSR
   });
 
