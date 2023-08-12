@@ -9,8 +9,8 @@ import {
   useMantineTheme,
   rem,
 } from "@mantine/core";
-
-export function User() {
+import { Session } from "next-auth";
+export function User({ session }: { session: Session | null }) {
   const theme = useMantineTheme();
 
   return (
@@ -48,10 +48,10 @@ export function User() {
           />
           <Box sx={{ flex: 1 }}>
             <Text size="sm" weight={500}>
-              Amy Horsefighter
+              {session?.user && session.user.name}
             </Text>
             <Text color="dimmed" size="xs">
-              ahorsefighter@gmail.com
+              {session?.user && session.user.email}
             </Text>
           </Box>
 

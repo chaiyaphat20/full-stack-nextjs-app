@@ -1,9 +1,11 @@
 import prisma from "@/lib/prisma";
 import { compare } from "bcrypt";
+import { Session } from "inspector";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: NextAuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/login",
   },
@@ -12,6 +14,12 @@ export const authOptions: NextAuthOptions = {
     maxAge: 5 * 60, //5 mins //หมดอายุ หน่วย second
   },
   // useSecureCookies: true, // สำหรับ production และใช้ https
+  callbacks:{
+    async session({ session, token, user }) {
+      session.programCode = "dasdasdasdasdas"
+      return session
+    },
+  },
   providers: [
     CredentialsProvider({
       credentials: {}, // เราไม่ใช้ เราจะใช้หน้า Login เราเอง
@@ -48,6 +56,7 @@ export const authOptions: NextAuthOptions = {
         };
       },
     }),
+    
   ],
 };
 

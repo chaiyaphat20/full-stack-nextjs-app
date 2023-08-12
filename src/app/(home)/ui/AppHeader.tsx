@@ -226,7 +226,7 @@ export function AppHeader() {
             </Group>
 
             <Group className={classes.hiddenMobile}>
-              <Button variant="default">Log in</Button>
+               <Button variant="default">Log in</Button>
               <Button>Sign up</Button>
             </Group>
 
@@ -253,14 +253,19 @@ export function AppHeader() {
               color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
             />
 
-            <Link href="./" className={classes.link} onClick={toggleDrawer}  prefetch={false}>
+            <Link
+              href="./"
+              className={classes.link}
+              onClick={toggleDrawer}
+              prefetch={false}
+            >
               Home
             </Link>
             <Link
               href="./about"
               className={classes.link}
               onClick={toggleDrawer}
-              prefetch={false}  //ทุกครั้งที่เปลี่ยน route จะ call api ใหม่
+              prefetch={false} //ทุกครั้งที่เปลี่ยน route จะ call api ใหม่
             >
               About Us
             </Link>
@@ -279,7 +284,9 @@ export function AppHeader() {
             />
 
             <Group position="center" grow pb="xl" px="md">
-              <Button variant="default">Log in</Button>
+              <Link href="./login">
+                <Button variant="default">Log in</Button>
+              </Link>
               <Button>Sign up</Button>
             </Group>
           </ScrollArea>

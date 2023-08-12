@@ -1,5 +1,6 @@
 "use client";
 
+import { signOut } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import {
   AppShell,
@@ -11,21 +12,27 @@ import {
   Burger,
   Title,
   Button,
-  Container
+  Container,
 } from "@mantine/core";
 import { MainLinks } from "./_mainLinks";
 import { User } from "./_user";
 import { useRouter } from "next/navigation";
-// import { Logo } from "./_logo";
+import { Session } from "next-auth";
 
-export default function DLayout({ children }: { children: React.ReactNode }) {
+export default function DLayout({
+  children,
+  session
+}: {
+  children: React.ReactNode;
+  session: Session | null;
+}) {
   const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
   const router = useRouter();
 
   useEffect(() => {
     console.log("D layout");
-  })
+  });
 
   return (
     <AppShell
@@ -40,7 +47,7 @@ export default function DLayout({ children }: { children: React.ReactNode }) {
             <MainLinks />
           </Navbar.Section>
           <Navbar.Section>
-            <User />
+            <User session={session} />
           </Navbar.Section>
         </Navbar>
       }
@@ -64,7 +71,7 @@ export default function DLayout({ children }: { children: React.ReactNode }) {
                 <Button
                   variant="default"
                   onClick={() => {
-                    router.replace("../");
+                    signOut({ callbackUrl: "/" });
                   }}
                 >
                   ออกจากระบบ
