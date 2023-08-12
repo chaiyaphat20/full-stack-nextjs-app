@@ -15,8 +15,12 @@ import {
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export function LoginContent() {
+  const router = useRouter();
+
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -32,13 +36,25 @@ export function LoginContent() {
   const {
     register,
     handleSubmit,
-    formState: { errors , isSubmitting},  //isSubmitting ถ้ากำหนดกดจะเป็น true
+    formState: { errors, isSubmitting }, //isSubmitting ถ้ากำหนดกดจะเป็น true
   } = useForm<FormData>({
     resolver: yupResolver(schema),
     mode: "all", //check ตั้งแต่ พิมพ์ หรือ อื่นๆ
   });
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     console.log(data);
+    const result = await signIn("credentials", {
+      redirect: false,
+      email: data.email,
+      password: data.password,
+    });
+
+    if (result?.error) {
+      alert(result.error);
+    } else {
+      router.replace("/dashboard");
+    }
+    return false; //return false
   };
 
   return (
@@ -80,7 +96,7 @@ export function LoginContent() {
               Forgot password?
             </Anchor>
           </Group>
-          <Button fullWidth mt="xl" type="submit" loading={isSubmitting}>  
+          <Button fullWidth mt="xl" type="submit" loading={isSubmitting}>
             Login
           </Button>
         </Paper>
