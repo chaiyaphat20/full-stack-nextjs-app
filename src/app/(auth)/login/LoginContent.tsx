@@ -32,12 +32,14 @@ export function LoginContent() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors , isSubmitting},  //isSubmitting ถ้ากำหนดกดจะเป็น true
   } = useForm<FormData>({
     resolver: yupResolver(schema),
-    mode:"all" //check ตั้งแต่ พิมพ์ หรือ อื่นๆ
+    mode: "all", //check ตั้งแต่ พิมพ์ หรือ อื่นๆ
   });
-  const onSubmit = (data: FormData) => console.log(data);
+  const onSubmit = (data: FormData) => {
+    console.log(data);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -78,7 +80,7 @@ export function LoginContent() {
               Forgot password?
             </Anchor>
           </Group>
-          <Button fullWidth mt="xl" type="submit">
+          <Button fullWidth mt="xl" type="submit" loading={isSubmitting}>  
             Login
           </Button>
         </Paper>
