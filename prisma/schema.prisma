@@ -18,3 +18,12 @@ model NewsType {
 
   @@map("news_type") //Table name
 }
+
+model User {
+  id      Int      @id @default(autoincrement())
+  fullname   String   @db.VarChar(255)
+  email   String   @db.VarChar(255) @unique
+  password   String   @db.VarChar(255)
+
+  @@map("users") //Table name
+}
