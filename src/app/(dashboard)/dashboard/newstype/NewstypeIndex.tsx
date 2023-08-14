@@ -2,9 +2,10 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Table, Button } from "@mantine/core";
+import { Table, Button, Space } from "@mantine/core";
 import { IconTrash, IconPencil } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 interface INewsTypes {
   id: number;
   title: string;
@@ -30,12 +31,14 @@ export default function NewsTypeIndex() {
         `http://localhost:4000/api/newstype/${id}`
       );
       alert(response.data.message);
-      getData()
+      getData();
     }
   };
 
   return (
     <>
+      <Link href="/dashboard/newstype/create">เพิ่มข้อมูล</Link>
+      <Space h={3} />
       <Table>
         <thead>
           <tr>
@@ -52,12 +55,22 @@ export default function NewsTypeIndex() {
                 <td>{item.title}</td>
                 <td>{item.createAt}</td>
                 <td>
-                  <Button leftIcon={<IconPencil />} variant="white">
+                  <Button
+                    leftIcon={<IconPencil />}
+                    onClick={() => {
+                      router.push(`/dashboard/newstype/${item.id}/edit`);
+                    }}
+                    variant="white"
+                  >
                     {" "}
                     แก้ไข{" "}
                   </Button>{" "}
                   |
-                  <Button leftIcon={<IconTrash />}  onClick={()=>onDelete(item.id)} variant="white">
+                  <Button
+                    leftIcon={<IconTrash />}
+                    onClick={() => onDelete(item.id)}
+                    variant="white"
+                  >
                     {" "}
                     ลบ{" "}
                   </Button>
