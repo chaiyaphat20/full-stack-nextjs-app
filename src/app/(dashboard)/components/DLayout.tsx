@@ -13,15 +13,17 @@ import {
   Title,
   Button,
   Container,
+  Text
 } from "@mantine/core";
 import { MainLinks } from "./_mainLinks";
 import { User } from "./_user";
 import { useRouter } from "next/navigation";
 import { Session } from "next-auth";
+import { useAuthStore } from "@/lib/zustand/store";
 
 export default function DLayout({
   children,
-  session
+  session,
 }: {
   children: React.ReactNode;
   session: Session | null;
@@ -29,10 +31,11 @@ export default function DLayout({
   const [opened, setOpened] = useState(false);
   const theme = useMantineTheme();
   const router = useRouter();
+  const { userProfile, setUserProfile } = useAuthStore((state) => state);
 
   useEffect(() => {
-    console.log("D layout");
-  });
+    setUserProfile(session!);
+  }, [session, setUserProfile]);
 
   return (
     <AppShell
@@ -68,6 +71,7 @@ export default function DLayout({
 
             <MediaQuery smallerThan="md" styles={{ display: "none" }}>
               <Group>
+                {userProfile?.user && <Text>{userProfile?.user.name}</Text>}
                 <Button
                   variant="default"
                   onClick={() => {

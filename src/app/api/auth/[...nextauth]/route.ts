@@ -11,12 +11,13 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: "jwt",
-    maxAge: 5 * 60, //5 mins //หมดอายุ หน่วย second
+    maxAge:   1*60*60, //5 mins //หมดอายุ หน่วย second
   },
   // useSecureCookies: true, // สำหรับ production และใช้ https
   callbacks:{
     async session({ session, token, user }) {
-      session.programCode = "dasdasdasdasdas"
+      const programCode = ["CC1","CC2"]
+      session.programCode = JSON.stringify(programCode)
       return session
     },
   },

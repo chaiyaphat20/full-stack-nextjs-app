@@ -19,7 +19,6 @@ export default async function DashboardLayout({
 }) {
 
   const session = await getServerSession(authOptions)
-
   return (
     <html lang="en">
       <body>

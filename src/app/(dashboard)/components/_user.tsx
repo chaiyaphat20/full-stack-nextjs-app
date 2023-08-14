@@ -12,7 +12,7 @@ import {
 import { Session } from "next-auth";
 export function User({ session }: { session: Session | null }) {
   const theme = useMantineTheme();
-
+  console.log(session)
   return (
     <Box
       sx={{
